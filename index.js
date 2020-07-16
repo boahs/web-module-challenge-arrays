@@ -63,7 +63,7 @@ Your function should add the flavor to the front of the array and console.log th
 For example addFlavor("Rainbow Sherbert", originalFlavors) should return ["Rainbow Sherbert", "Banana Nut Fudge",..."Vanilla Burnt Almond"] */
 
 function addFlavor(arr, flavor) {
-  arr.unshift(flavor);
+  arr.unshift(flavor); // adding a 'flavor' to the beginning of an arr
   console.log(arr);
 }
 
@@ -80,7 +80,7 @@ Your function should remove a flavor from the end of the array and console.log t
 For example removeLastFlavor(originalFlavors) would return ["Rainbow Sherbert", "Banana Nut Fudge",..."Vanilla"]*/
 
 function removeLastFlavor(arr) {
-  arr.pop();
+  arr.pop(); // removing the last item in an array.
   console.log(arr);
 }
 
@@ -96,7 +96,7 @@ Your function should accept:
 For example, getFlavorByIndex(originalFlavors, 2) would return "Black Walnut", assuming Rainbow Sherbert has been added successfully. */
 
 function getFlavorByIndex(arr, index) {
-  return arr[index];
+  return arr[index]; //returning an arrays index
 }
 getFlavorByIndex(originalFlavors, 2);
 
@@ -115,12 +115,15 @@ Hint: You can use .splice() for this
 
 function removeFlavorByName(arr, str) {
   for (let i = 0; i < arr.length; i++) {
+    // looping through the entire array until it's end. .length = the entire array.
     if (arr[i].includes(str)) {
-      return arr.splice(i, 1);
+      // if array (includes) the string we're wanting to remove
+      return arr.splice(i, 1); // then logic is computed, and we'll return the .splice method. We're calling the loop to once again go through the entire array, and remove one item(which will be the string.)
     }
   }
 }
-
+removeFlavorByName(originalFlavors, "Banana Nut Fudge");
+console.log(originalFlavors);
 /* Task 6: With all of these changes going on, we don't want to lose track of the actual, original 31 flavors. Write a function called copy that makes a copy of the array. 
 
 Your function should accept: 
@@ -130,10 +133,10 @@ Your function should accept:
 and should return a new array that is identical to the old array. You can name the new array however you'd like. */
 
 function copy(arr) {
-  let newArr = [...arr];
-  return newArr;
+  let newArr = [...arr]; //local scope copying our defined variable newArr into an array using the spread operator.
+  return newArr; // we're returning our newArr variable which should be a copy of array.
 }
-let doggy = copy(kitty); // we're used pre-defined variables to assigned a copy. example : let doggy = ['bark'] let kitty = ['meow'] doggy will now be 'meow'
+let doggy = copy(kitty); //define these first --- we're used pre-defined variables to assigned a copy. example : let doggy = ['bark'] let kitty = ['meow'] doggy will now be 'meow'
 
 /* Task 7: July 7th is "World Chocolate Day" and Baskin Robins wants to create promotional materials highlighting all of their chocolate flavors. Write a function that checks every item in the array for a given string and returns a new array called filteredArray with just these values. Rather than hardcoding "chocolate" into your function, pass a string as a parameter, and invoke with the argument "chocolate". This way you could also filter for "Vanilla", "Sherbert", etc. when those holidays roll around.
 
@@ -152,14 +155,16 @@ DO NOT USE ADVANCED ARRAY METHODS (i.e. .filter) to solve this problem.
 hint - you can use the .includes method to help you solve this */
 
 function filterByWord(arr, str) {
-  let newArr = [];
+  let newArr = []; //creating empty array to defined variable newArr.
 
   for (let i = 0; i < arr.length; i++) {
+    //looping through the entire arrays length.
     if (arr[i].includes(str)) {
-      newArr.push(arr[i]);
+      //if array that is being looped through includes the given string we're moving onto the logic
+      newArr.push(arr[i]); // if the logic computes, we're pushing newArr to arr value.
     }
   }
-  return newArr;
+  return newArr; // we're returning newArr --  console.log(filterByWord(originalFlavors, 'Chocolate'));
 }
 
 /* 🧁🍦🍨 STRETCH 🍨🍦🍫*/
@@ -174,8 +179,13 @@ and should return the average number of words per item in the array.
 
 For example, getAverageWordLength(originalFlavors) should return a number between 0 and 3. */
 
-function getAverageWordLength(/*code here*/) {
-  /*code here*/
+function getAverageWordLength(arr) {
+  let sum = 0;
+  for (i = 0; i < arr.length; i++) {
+    sum += arr[i].split(" ").length;
+  }
+  let avg = sum / arr.length;
+  return avg;
 }
 
 /* STRETCH 2: Baskin Robins now offers new flavors, seasonal flavors, and even regional flavors. Write a function that will randomly select a total of 31 flavors from originalFlavors, currentFlavors, seasonalFlavors, and regionalFlavors.
